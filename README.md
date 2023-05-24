@@ -1,7 +1,12 @@
-ThreadPool with Camera Preview
+# ThreadPool with Camera Preview
 -------------------------------
 
-Download the demo app on [Google Play](https://play.google.com/store/apps/details?id=au.com.alphamu.camerapreviewcaptureimage).
+### Update Gradle 8.0
+### Update use androidx
+### Update project dependencies
+Camera preview is landscape
+
+---
 
 This project demonstrate how to use `HandlerThread`s and `ThreadPool`s to burst capture 
 images from Android's Camera API on a background thread.
@@ -25,7 +30,3 @@ Performance Before TheadPool
 Performance After ThreadPool
 =================
 [![Performance after ThreadPool](http://img.youtube.com/vi/77Lh9XpXArw/0.jpg)](http://www.youtube.com/watch?v=77Lh9XpXArw)
-
-Demo App on Google Play
-======================
-Download the demo app on [Google Play](https://play.google.com/store/apps/details?id=au.com.alphamu.camerapreviewcaptureimage).
