@@ -1,7 +1,8 @@
 package au.com.alphamu.camerapreviewcaptureimage;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.

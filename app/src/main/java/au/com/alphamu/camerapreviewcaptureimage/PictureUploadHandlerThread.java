@@ -42,7 +42,7 @@ public class PictureUploadHandlerThread extends HandlerThread {
     private Set<File> mQueue = new HashSet<>();
     private Map<File, Bitmap> mWritePictureRequest = new HashMap<>();
 
-    private Long mCounter = 1l;
+    private Long mCounter = 1L;
     private boolean mUseThreads = true;
 
 
@@ -219,7 +219,8 @@ public class PictureUploadHandlerThread extends HandlerThread {
         if (f != null) {
             bitmapData.orientation = f.getOrientation();
             Camera.CameraInfo camInfo = new Camera.CameraInfo();
-            camera.getCameraInfo(f.getCameraCurrentlyLocked(), camInfo);
+            // camera.getCameraInfo(f.getCameraCurrentlyLocked(), camInfo);
+            Camera.getCameraInfo(f.getCameraCurrentlyLocked(), camInfo);
             if (camInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                 bitmapData.orientation = f.getOrientation() * -1;
             }
