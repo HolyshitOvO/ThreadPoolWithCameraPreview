@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,7 +38,7 @@ public class CameraPermissionHelper extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         if (activity instanceof CameraPermissionCallback) {
             mCallback = (CameraPermissionCallback) activity;
@@ -71,33 +72,27 @@ public class CameraPermissionHelper extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case REQUEST_CHECK_SETTINGS:
-                switch (resultCode) {
-                    case Activity.RESULT_OK:
-                        // All required changes were successfully made
-                        if (mCallback != null) {
-                            mCallback.onCameraPermissionResult(true);
-                        }
-                        break;
-                    case Activity.RESULT_CANCELED:
-                        // The user was asked to change settings, but chose not to
-                        if (mCallback != null) {
-                            mCallback.onCameraPermissionResult(false);
-                        }
-                        break;
-                    default:
-                        if (mCallback != null) {
-                            mCallback.onCameraPermissionResult(false);
-                        }
-                        break;
-                }
-                break;
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    // All required changes were successfully made
+                    if (mCallback != null) {
+                        mCallback.onCameraPermissionResult(true);
+                    }
+                    break;
+                case Activity.RESULT_CANCELED:
+                    // The user was asked to change settings, but chose not to
+                default:
+                    if (mCallback != null) {
+                        mCallback.onCameraPermissionResult(false);
+                    }
+                    break;
+            }
         }
     }
 
     public void setPermissionDenied(boolean permissionDenied) {
-        this.sPermissionDenied = permissionDenied;
+        sPermissionDenied = permissionDenied;
     }
 
     public static boolean isPermissionDenied() {
@@ -108,8 +103,8 @@ public class CameraPermissionHelper extends Fragment {
      * Callback received when a permissions request has been completed.
      */
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
 
         if (requestCode == REQUEST_CAMERA) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
